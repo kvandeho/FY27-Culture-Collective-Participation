@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FY27 Culture Collective — Interest Form</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --border: #2d3a4f;
+      --text: #e8eef7;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-dim: rgba(56, 189, 248, 0.15);
+      --success: #34d399;
+      --radius: 12px;
+      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      background: radial-gradient(ellipse 120% 80% at 50% -20%, #1e3a5f 0%, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+
+    header p.lead {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem;
+    }
+
+    @media (min-width: 520px) {
+      form {
+        padding: 1.75rem 2rem;
+      }
+    }
+
+    fieldset {
+      border: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+    }
+
+    legend {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.65rem;
+      width: 100%;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: -0.35rem 0 0.75rem;
+    }
+
+    label.block {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .radio-row,
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .radio-row input,
+    .check-row input {
+      margin-top: 0.35rem;
+      accent-color: var(--accent);
+    }
+
+    .check-grid {
+      display: grid;
+      gap: 0.35rem;
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .conditional {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .conditional[hidden] {
+      display: none !important;
+    }
+
+    .commit-box {
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      margin-bottom: 1.25rem;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%);
+      color: #0f172a;
+    }
+
+    button[type="submit"]:hover {
+      filter: brightness(1.06);
+    }
+
+    button[type="submit"]:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .thank-you {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .thank-you h2 {
+      color: var(--success);
+      font-size: 1.35rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .thank-you p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer.note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .pre-submit-thanks {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .form-error {
+      display: none;
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #f87171;
+      background: rgba(248, 113, 113, 0.12);
+      color: #fecaca;
+      font-size: 0.9rem;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>FY27 Culture Collective — interest &amp; preferences</h1>
+      <p class="lead">
+        FY27 kicks off in <strong>August</strong>. This form helps us understand who wants to stay involved,
+        in what role, and which initiatives matter most to you.
+      </p>
+    </header>
+
+    <div id="form-panel">
+      <form id="interest-form" action="https://formspree.io/f/mpqblwop" method="POST" novalidate>
+        <p id="form-error" class="form-error" role="alert"></p>
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Leave blank</label>
+          <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="_subject" value="FY27 Culture Collective — interest form" />
+        <fieldset>
+          <legend>Your name</legend>
+          <label class="block" for="full-name">Full name</label>
+          <input type="text" id="full-name" name="full_name" autocomplete="name" required placeholder="e.g., Jordan Smith" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Are you interested in participating in FY27?</legend>
+          <p class="hint">FY27 is planned as a full fiscal-year commitment (see below).</p>
+          <div class="radio-row">
+            <input type="radio" id="part-yes" name="participation" value="yes" required />
+            <label for="part-yes">Yes, I'm interested in participating</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="part-no" name="participation" value="no" />
+            <label for="part-no">Not at this time</label>
+          </div>
+        </fieldset>
+
+        <div id="follow-up" class="conditional" hidden>
+          <fieldset>
+            <legend>If you're participating, what role are you aiming for?</legend>
+            <div class="radio-row">
+              <input type="radio" id="role-lead" name="role_preference" value="lead" />
+              <label for="role-lead">Lead</label>
+            </div>
+            <div class="radio-row">
+              <input type="radio" id="role-colead" name="role_preference" value="co-lead" />
+              <label for="role-colead">Co-lead</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Which initiatives are you interested in? (select all that apply)</legend>
+            <p class="hint">Based on our current FY26 lineup — adjust next year as needed.</p>
+            <div class="check-grid" role="group" aria-label="Initiative interests">
+              <div class="check-row"><input type="checkbox" id="in-virtual-event" name="initiatives" value="Virtual Event" /><label for="in-virtual-event">Virtual Event</label></div>
+              <div class="check-row"><input type="checkbox" id="in-specialists-care" name="initiatives" value="Specialists Care" /><label for="in-specialists-care">Specialists Care</label></div>
+              <div class="check-row"><input type="checkbox" id="in-fri-post" name="initiatives" value="Fri Post" /><label for="in-fri-post">Fri Post</label></div>
+              <div class="check-row"><input type="checkbox" id="in-buddy" name="initiatives" value="Buddy Program" /><label for="in-buddy">Buddy Program</label></div>
+              <div class="check-row"><input type="checkbox" id="in-sports" name="initiatives" value="Sports" /><label for="in-sports">Sports</label></div>
+              <div class="check-row"><input type="checkbox" id="in-connection" name="initiatives" value="Connection Team (Advisor)" /><label for="in-connection">Connection Team <span style="color:var(--muted);font-weight:400">(Advisor)</span></label></div>
+              <div class="check-row"><input type="checkbox" id="in-awards" name="initiatives" value="Awards Program" /><label for="in-awards">Awards Program</label></div>
+              <div class="check-row"><input type="checkbox" id="in-spotlight" name="initiatives" value="Spotlight and Celebrate" /><label for="in-spotlight">Spotlight and Celebrate</label></div>
+              <div class="check-row"><input type="checkbox" id="in-welcome" name="initiatives" value="Welcome Committee" /><label for="in-welcome">Welcome Committee</label></div>
+              <div class="check-row"><input type="checkbox" id="in-lunch-t2g" name="initiatives" value="Lunch & Learn T2G" /><label for="in-lunch-t2g">Lunch &amp; Learn T2G</label></div>
+              <div class="check-row"><input type="checkbox" id="in-open-table" name="initiatives" value="Jeremy's Open Table" /><label for="in-open-table">Jeremy's Open Table</label></div>
+              <div class="check-row"><input type="checkbox" id="in-coffee" name="initiatives" value="Coffee Chat" /><label for="in-coffee">Coffee Chat</label></div>
+              <div class="check-row"><input type="checkbox" id="in-lunch-learn" name="initiatives" value="Lunch & Learn" /><label for="in-lunch-learn">Lunch &amp; Learn</label></div>
+              <div class="check-row"><input type="checkbox" id="in-ai" name="initiatives" value="AI" /><label for="in-ai">AI</label></div>
+              <div class="check-row"><input type="checkbox" id="in-product" name="initiatives" value="Product" /><label for="in-product">Product</label></div>
+              <div class="check-row"><input type="checkbox" id="in-soft-skills" name="initiatives" value="Soft Skills" /><label for="in-soft-skills">Soft Skills</label></div>
+              <div class="check-row"><input type="checkbox" id="in-dev-team" name="initiatives" value="Development Team (Advisor)" /><label for="in-dev-team">Development Team <span style="color:var(--muted);font-weight:400">(Advisor)</span></label></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>New initiative idea</legend>
+            <div class="check-row" style="margin-bottom:0.75rem">
+              <input type="checkbox" id="new-init-toggle" name="has_new_initiative" value="yes" />
+              <label for="new-init-toggle">I'd like to help start or lead a <strong>new</strong> initiative not listed above</label>
+            </div>
+            <label class="block" for="new-init-desc">Describe your idea (optional unless checked above)</label>
+            <textarea id="new-init-desc" name="new_initiative_description" placeholder="What's the idea, who is it for, and how often would it run?"></textarea>
+          </fieldset>
+        </div>
+
+        <fieldset>
+          <legend>Full fiscal year commitment</legend>
+          <p class="hint">Required if you're participating in FY27.</p>
+          <div class="commit-box">
+            <div class="check-row">
+              <input type="checkbox" id="commit-fy" name="commit_full_fy" value="yes" />
+              <label for="commit-fy">
+                I understand FY27 participation is intended as a <strong>full fiscal year</strong> commitment
+                (July–June), and I'm willing to plan around that level of involvement for the initiatives I support.
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Other feedback</legend>
+          <label class="block" for="feedback">What would help make FY27 successful for you and the team?</label>
+          <textarea id="feedback" name="feedback" placeholder="Themes, cadence, communication, inclusion, ideas — anything helps."></textarea>
+        </fieldset>
+
+        <div class="pre-submit-thanks">
+          Thank you for taking the time — your answers help us shape roles, staffing, and priorities before August.
+        </div>
+
+        <button type="submit" id="submit-btn">Submit responses</button>
+      </form>
+    </div>
+
+    <div id="done-panel" class="thank-you" hidden>
+      <h2>Thank you!</h2>
+      <p>We appreciate you sharing your preferences and feedback. We'll follow up as we finalize FY27 planning.</p>
+    </div>
+
+    <footer class="note">
+      Internal interest form — FY27 Culture Collective
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById("interest-form");
+      var followUp = document.getElementById("follow-up");
+      var partYes = document.getElementById("part-yes");
+      var partNo = document.getElementById("part-no");
+      var newToggle = document.getElementById("new-init-toggle");
+      var newDesc = document.getElementById("new-init-desc");
+      var formPanel = document.getElementById("form-panel");
+      var donePanel = document.getElementById("done-panel");
+      var submitBtn = document.getElementById("submit-btn");
+      var formError = document.getElementById("form-error");
+
+      function showError(msg) {
+        formError.textContent = msg;
+        formError.classList.add("is-visible");
+      }
+
+      function clearError() {
+        formError.textContent = "";
+        formError.classList.remove("is-visible");
+      }
+
+      function syncFollowUp() {
+        var show = partYes.checked;
+        followUp.hidden = !show;
+        if (!show) {
+          document.getElementById("commit-fy").checked = false;
+        }
+        followUp.querySelectorAll("input, textarea").forEach(function (el) {
+          if (show) {
+            if (el.name === "role_preference" || el.name === "initiatives" || el.name === "has_new_initiative" || el.name === "new_initiative_description") {
+              el.disabled = false;
+            }
+          } else {
+            el.disabled = true;
+            if (el.type === "radio" || el.type === "checkbox") el.checked = false;
+            else if (el.tagName === "TEXTAREA") el.value = "";
+          }
+        });
+      }
+
+      partYes.addEventListener("change", syncFollowUp);
+      partNo.addEventListener("change", syncFollowUp);
+
+      newToggle.addEventListener("change", function () {
+        newDesc.required = newToggle.checked;
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        clearError();
+
+        if (!partYes.checked && !partNo.checked) {
+          showError("Please choose whether you're interested in participating in FY27.");
+          return;
+        }
+
+        if (partYes.checked) {
+          var roleOk = form.querySelector('input[name="role_preference"]:checked');
+          if (!roleOk) {
+            showError("Please choose Lead or Co-lead.");
+            return;
+          }
+          if (!document.getElementById("commit-fy").checked) {
+            showError(
+              'Please confirm your full fiscal year commitment, or choose "Not at this time" if you are not participating.'
+            );
+            return;
+          }
+          if (newToggle.checked && !newDesc.value.trim()) {
+            showError("Please describe your new initiative idea, or uncheck the new initiative option.");
+            return;
+          }
+        }
+
+        var fd = new FormData(form);
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+
+        fetch(form.getAttribute("action"), {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        })
+          .then(function (res) {
+            return res.json().then(
+              function (data) {
+                return { ok: res.ok, data: data };
+              },
+              function () {
+                return { ok: res.ok, data: {} };
+              }
+            );
+          })
+          .then(function (result) {
+            if (result.ok) {
+              formPanel.hidden = true;
+              donePanel.hidden = false;
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              return;
+            }
+            var d = result.data;
+            var msg =
+              (d && d.error) ||
+              (d && d.errors && Array.isArray(d.errors) && d.errors.map(function (err) {
+                return err.message || String(err);
+              }).filter(Boolean).join(" ")) ||
+              "Something went wrong sending your response. Please try again.";
+            showError(typeof msg === "string" ? msg : "Submission failed. Please try again.");
+          })
+          .catch(function () {
+            showError("Network error. Check your connection and try again.");
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit responses";
+          });
+      });
+
+      syncFollowUp();
+    })();
+  </script>
+</body>
+</html>
