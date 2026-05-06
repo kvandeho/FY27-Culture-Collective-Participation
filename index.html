@@ -263,9 +263,22 @@
           </div>
         </fieldset>
 
+        <fieldset>
+          <legend>3. For FY27, would you prefer to serve as a Lead or Co-lead?</legend>
+          <p class="hint">Same question whether you are staying put or hoping to switch workstreams.</p>
+          <div class="radio-row">
+            <input type="radio" id="role-lead" name="role_preference" value="lead" />
+            <label for="role-lead">Lead</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="role-colead" name="role_preference" value="co-lead" />
+            <label for="role-colead">Co-lead</label>
+          </div>
+        </fieldset>
+
         <div id="workstream-picks" class="conditional" hidden>
           <fieldset>
-            <legend>3. If you are interested in moving, which workstreams interest you? (select as many as you like)</legend>
+            <legend>4. If you are interested in moving, which workstreams interest you? (select as many as you like)</legend>
             <p class="hint">Pick every option that sounds like a good fit. If something else is on your mind, choose other and discuss it below.</p>
             <div class="check-grid" role="group" aria-label="Workstream interests">
               <div class="check-row"><input type="checkbox" id="ws-virtual-event" name="workstreams" value="Virtual Event" /><label for="ws-virtual-event">Virtual Events Lead</label></div>
@@ -279,7 +292,7 @@
               <div class="check-row"><input type="checkbox" id="ws-open-table" name="workstreams" value="Open Table" /><label for="ws-open-table">Jeremy's Open Table Lead</label></div>
               <div class="check-row"><input type="checkbox" id="ws-coffee" name="workstreams" value="Coffee Chat" /><label for="ws-coffee">Coffee Chat Lead</label></div>
               <div class="check-row"><input type="checkbox" id="ws-lunch-learn" name="workstreams" value="Lunch & Learn" /><label for="ws-lunch-learn">Lunch &amp; Learn Lead</label></div>
-              <div class="check-row"><input type="checkbox" id="ws-ai" name="workstreams" value="AI" /><label for="ws-ai">AI Co-Lead</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-ai" name="workstreams" value="AI" /><label for="ws-ai">AI Lead</label></div>
               <div class="check-row"><input type="checkbox" id="ws-product" name="workstreams" value="Product" /><label for="ws-product">Product Spotlight Lead</label></div>
               <div class="check-row"><input type="checkbox" id="ws-soft-skills" name="workstreams" value="Soft Skills" /><label for="ws-soft-skills">Soft Skills Lead</label></div>
               <div class="check-row"><input type="checkbox" id="ws-other" name="workstreams" value="Other" /><label for="ws-other">Other</label></div>
@@ -375,6 +388,11 @@
 
         if (!wsStay.checked && !wsMove.checked) {
           showError("Please choose whether you want to stay on your current workstream or move.");
+          return;
+        }
+
+        if (!form.querySelector('input[name="role_preference"]:checked')) {
+          showError("Please choose whether you prefer to be a Lead or Co-lead for FY27.");
           return;
         }
 
