@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FY27 Culture Collective — Interest Form</title>
+  <title>FY27 Culture Collective: workstream interest form</title>
   <style>
     :root {
       --bg: #0f1419;
@@ -12,7 +12,6 @@
       --text: #e8eef7;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --accent-dim: rgba(56, 189, 248, 0.15);
       --success: #34d399;
       --radius: 12px;
       --font: "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -52,6 +51,10 @@
       color: var(--muted);
       margin: 0;
       font-size: 0.95rem;
+    }
+
+    header p.lead + p.lead {
+      margin-top: 0.75rem;
     }
 
     form {
@@ -150,12 +153,12 @@
       display: none !important;
     }
 
-    .commit-box {
-      padding: 1rem;
-      border-radius: 8px;
-      background: var(--accent-dim);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      margin-bottom: 1.25rem;
+    .other-detail {
+      margin-top: 1rem;
+    }
+
+    .other-detail[hidden] {
+      display: none !important;
     }
 
     button[type="submit"] {
@@ -202,15 +205,6 @@
       text-align: center;
     }
 
-    .pre-submit-thanks {
-      margin-top: 1.25rem;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
     .form-error {
       display: none;
       margin-bottom: 1rem;
@@ -238,10 +232,12 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>FY27 Culture Collective — interest &amp; preferences</h1>
+      <h1>FY27 Culture Collective: workstream interests</h1>
       <p class="lead">
-        FY27 kicks off in <strong>August</strong>. This form helps us understand who wants to stay involved,
-        in what role, and which initiatives matter most to you.
+        Thank you. FY27 starts in <strong>August</strong>, and we want everyone on a workstream that feels energizing and meaningful to you.
+      </p>
+      <p class="lead">
+        This short form collects your preferences so we can line up roles and make sure people land on initiatives they care about for the new fiscal year.
       </p>
     </header>
 
@@ -252,99 +248,55 @@
           <label for="website">Leave blank</label>
           <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
         </div>
-        <input type="hidden" name="_subject" value="FY27 Culture Collective — interest form" />
+        <input type="hidden" name="_subject" value="FY27 Culture Collective: workstream interest form" />
         <fieldset>
-          <legend>Your name</legend>
-          <label class="block" for="full-name">Full name</label>
-          <input type="text" id="full-name" name="full_name" autocomplete="name" required placeholder="e.g., Jordan Smith" />
+          <legend>1. What is your name? (first last)</legend>
+          <input type="text" id="respondent-name" name="name" autocomplete="name" placeholder="e.g., Jordan Smith" />
         </fieldset>
 
         <fieldset>
-          <legend>Are you interested in participating in FY27?</legend>
-          <p class="hint">FY27 is planned as a full fiscal-year commitment (see below).</p>
+          <legend>2. Would you prefer to stay on your current workstream or move to a different workstream?</legend>
           <div class="radio-row">
-            <input type="radio" id="part-yes" name="participation" value="yes" required />
-            <label for="part-yes">Yes, I'm interested in participating</label>
+            <input type="radio" id="ws-stay" name="workstream_preference" value="stay_current" />
+            <label for="ws-stay">Stay on my current workstream</label>
           </div>
           <div class="radio-row">
-            <input type="radio" id="part-no" name="participation" value="no" />
-            <label for="part-no">Not at this time</label>
+            <input type="radio" id="ws-move" name="workstream_preference" value="move" />
+            <label for="ws-move">Move to a different workstream</label>
           </div>
         </fieldset>
 
-        <div id="follow-up" class="conditional" hidden>
+        <div id="workstream-picks" class="conditional" hidden>
           <fieldset>
-            <legend>If you're participating, what role are you aiming for?</legend>
-            <div class="radio-row">
-              <input type="radio" id="role-lead" name="role_preference" value="lead" />
-              <label for="role-lead">Lead</label>
+            <legend>3. If you are interested in moving, which workstreams interest you? (select as many as you like)</legend>
+            <p class="hint">Pick every option that sounds like a good fit. If something else is on your mind, choose Other and tell us below.</p>
+            <div class="check-grid" role="group" aria-label="Workstream interests">
+              <div class="check-row"><input type="checkbox" id="ws-virtual-event" name="workstreams" value="Virtual Event" /><label for="ws-virtual-event">Virtual Event</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-specialists-care" name="workstreams" value="Specialists Care" /><label for="ws-specialists-care">Specialists Care</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-buddy" name="workstreams" value="Buddy Program" /><label for="ws-buddy">Buddy Program</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-sports" name="workstreams" value="Sports" /><label for="ws-sports">Sports</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-connection" name="workstreams" value="Connection Team" /><label for="ws-connection">Connection Team</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-awards" name="workstreams" value="Awards Program" /><label for="ws-awards">Awards Program</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-spotlight" name="workstreams" value="Spotlight and Celebrate" /><label for="ws-spotlight">Spotlight and Celebrate</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-welcome" name="workstreams" value="Welcome Committee" /><label for="ws-welcome">Welcome Committee</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-lunch-t2g" name="workstreams" value="Lunch & Learn T2G" /><label for="ws-lunch-t2g">Lunch &amp; Learn T2G</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-open-table" name="workstreams" value="Open Table" /><label for="ws-open-table">Open Table</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-coffee" name="workstreams" value="Coffee Chat" /><label for="ws-coffee">Coffee Chat</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-lunch-learn" name="workstreams" value="Lunch & Learn" /><label for="ws-lunch-learn">Lunch &amp; Learn</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-ai" name="workstreams" value="AI" /><label for="ws-ai">AI</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-product" name="workstreams" value="Product" /><label for="ws-product">Product</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-soft-skills" name="workstreams" value="Soft Skills" /><label for="ws-soft-skills">Soft Skills</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-dev-team" name="workstreams" value="Development Team" /><label for="ws-dev-team">Development Team</label></div>
+              <div class="check-row"><input type="checkbox" id="ws-other" name="workstreams" value="Other" /><label for="ws-other">Other</label></div>
             </div>
-            <div class="radio-row">
-              <input type="radio" id="role-colead" name="role_preference" value="co-lead" />
-              <label for="role-colead">Co-lead</label>
+            <div id="other-workstream-wrap" class="other-detail" hidden>
+              <label class="block" for="workstream-other-detail">What other workstream or idea are you interested in?</label>
+              <textarea id="workstream-other-detail" name="workstream_other_detail" placeholder="A sentence or two is plenty."></textarea>
             </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Which initiatives are you interested in? (select all that apply)</legend>
-            <p class="hint">Based on our current FY26 lineup — adjust next year as needed.</p>
-            <div class="check-grid" role="group" aria-label="Initiative interests">
-              <div class="check-row"><input type="checkbox" id="in-virtual-event" name="initiatives" value="Virtual Event" /><label for="in-virtual-event">Virtual Event</label></div>
-              <div class="check-row"><input type="checkbox" id="in-specialists-care" name="initiatives" value="Specialists Care" /><label for="in-specialists-care">Specialists Care</label></div>
-              <div class="check-row"><input type="checkbox" id="in-fri-post" name="initiatives" value="Fri Post" /><label for="in-fri-post">Fri Post</label></div>
-              <div class="check-row"><input type="checkbox" id="in-buddy" name="initiatives" value="Buddy Program" /><label for="in-buddy">Buddy Program</label></div>
-              <div class="check-row"><input type="checkbox" id="in-sports" name="initiatives" value="Sports" /><label for="in-sports">Sports</label></div>
-              <div class="check-row"><input type="checkbox" id="in-connection" name="initiatives" value="Connection Team (Advisor)" /><label for="in-connection">Connection Team <span style="color:var(--muted);font-weight:400">(Advisor)</span></label></div>
-              <div class="check-row"><input type="checkbox" id="in-awards" name="initiatives" value="Awards Program" /><label for="in-awards">Awards Program</label></div>
-              <div class="check-row"><input type="checkbox" id="in-spotlight" name="initiatives" value="Spotlight and Celebrate" /><label for="in-spotlight">Spotlight and Celebrate</label></div>
-              <div class="check-row"><input type="checkbox" id="in-welcome" name="initiatives" value="Welcome Committee" /><label for="in-welcome">Welcome Committee</label></div>
-              <div class="check-row"><input type="checkbox" id="in-lunch-t2g" name="initiatives" value="Lunch & Learn T2G" /><label for="in-lunch-t2g">Lunch &amp; Learn T2G</label></div>
-              <div class="check-row"><input type="checkbox" id="in-open-table" name="initiatives" value="Jeremy's Open Table" /><label for="in-open-table">Jeremy's Open Table</label></div>
-              <div class="check-row"><input type="checkbox" id="in-coffee" name="initiatives" value="Coffee Chat" /><label for="in-coffee">Coffee Chat</label></div>
-              <div class="check-row"><input type="checkbox" id="in-lunch-learn" name="initiatives" value="Lunch & Learn" /><label for="in-lunch-learn">Lunch &amp; Learn</label></div>
-              <div class="check-row"><input type="checkbox" id="in-ai" name="initiatives" value="AI" /><label for="in-ai">AI</label></div>
-              <div class="check-row"><input type="checkbox" id="in-product" name="initiatives" value="Product" /><label for="in-product">Product</label></div>
-              <div class="check-row"><input type="checkbox" id="in-soft-skills" name="initiatives" value="Soft Skills" /><label for="in-soft-skills">Soft Skills</label></div>
-              <div class="check-row"><input type="checkbox" id="in-dev-team" name="initiatives" value="Development Team (Advisor)" /><label for="in-dev-team">Development Team <span style="color:var(--muted);font-weight:400">(Advisor)</span></label></div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>New initiative idea</legend>
-            <div class="check-row" style="margin-bottom:0.75rem">
-              <input type="checkbox" id="new-init-toggle" name="has_new_initiative" value="yes" />
-              <label for="new-init-toggle">I'd like to help start or lead a <strong>new</strong> initiative not listed above</label>
-            </div>
-            <label class="block" for="new-init-desc">Describe your idea (optional unless checked above)</label>
-            <textarea id="new-init-desc" name="new_initiative_description" placeholder="What's the idea, who is it for, and how often would it run?"></textarea>
           </fieldset>
         </div>
 
-        <fieldset>
-          <legend>Full fiscal year commitment</legend>
-          <p class="hint">Required if you're participating in FY27.</p>
-          <div class="commit-box">
-            <div class="check-row">
-              <input type="checkbox" id="commit-fy" name="commit_full_fy" value="yes" />
-              <label for="commit-fy">
-                I understand FY27 participation is intended as a <strong>full fiscal year</strong> commitment
-                (July–June), and I'm willing to plan around that level of involvement for the initiatives I support.
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Other feedback</legend>
-          <label class="block" for="feedback">What would help make FY27 successful for you and the team?</label>
-          <textarea id="feedback" name="feedback" placeholder="Themes, cadence, communication, inclusion, ideas — anything helps."></textarea>
-        </fieldset>
-
-        <div class="pre-submit-thanks">
-          Thank you for taking the time — your answers help us shape roles, staffing, and priorities before August.
-        </div>
-
-        <button type="submit" id="submit-btn">Submit responses</button>
+        <button type="submit" id="submit-btn">Submit</button>
       </form>
     </div>
 
@@ -354,18 +306,20 @@
     </div>
 
     <footer class="note">
-      Internal interest form — FY27 Culture Collective
+      Internal interest form, FY27 Culture Collective
     </footer>
   </div>
 
   <script>
     (function () {
       var form = document.getElementById("interest-form");
-      var followUp = document.getElementById("follow-up");
-      var partYes = document.getElementById("part-yes");
-      var partNo = document.getElementById("part-no");
-      var newToggle = document.getElementById("new-init-toggle");
-      var newDesc = document.getElementById("new-init-desc");
+      var wsStay = document.getElementById("ws-stay");
+      var wsMove = document.getElementById("ws-move");
+      var workstreamPicks = document.getElementById("workstream-picks");
+      var wsOther = document.getElementById("ws-other");
+      var otherWrap = document.getElementById("other-workstream-wrap");
+      var otherDetail = document.getElementById("workstream-other-detail");
+      var nameInput = document.getElementById("respondent-name");
       var formPanel = document.getElementById("form-panel");
       var donePanel = document.getElementById("done-panel");
       var submitBtn = document.getElementById("submit-btn");
@@ -381,55 +335,62 @@
         formError.classList.remove("is-visible");
       }
 
-      function syncFollowUp() {
-        var show = partYes.checked;
-        followUp.hidden = !show;
-        if (!show) {
-          document.getElementById("commit-fy").checked = false;
+      function syncOtherDetail() {
+        var on = wsOther.checked;
+        otherWrap.hidden = !on;
+        otherDetail.disabled = !on;
+        if (!on) {
+          otherDetail.value = "";
         }
-        followUp.querySelectorAll("input, textarea").forEach(function (el) {
+      }
+
+      function syncWorkstreamSection() {
+        var show = wsMove.checked;
+        workstreamPicks.hidden = !show;
+        workstreamPicks.querySelectorAll("input, textarea").forEach(function (el) {
           if (show) {
-            if (el.name === "role_preference" || el.name === "initiatives" || el.name === "has_new_initiative" || el.name === "new_initiative_description") {
-              el.disabled = false;
+            el.disabled = false;
+            if (el.id === "workstream-other-detail") {
+              el.disabled = !wsOther.checked;
             }
           } else {
             el.disabled = true;
-            if (el.type === "radio" || el.type === "checkbox") el.checked = false;
+            if (el.type === "checkbox") el.checked = false;
             else if (el.tagName === "TEXTAREA") el.value = "";
           }
         });
+        syncOtherDetail();
       }
 
-      partYes.addEventListener("change", syncFollowUp);
-      partNo.addEventListener("change", syncFollowUp);
-
-      newToggle.addEventListener("change", function () {
-        newDesc.required = newToggle.checked;
+      wsStay.addEventListener("change", syncWorkstreamSection);
+      wsMove.addEventListener("change", syncWorkstreamSection);
+      wsOther.addEventListener("change", function () {
+        otherDetail.disabled = !wsOther.checked;
+        syncOtherDetail();
       });
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         clearError();
 
-        if (!partYes.checked && !partNo.checked) {
-          showError("Please choose whether you're interested in participating in FY27.");
+        if (!nameInput.value.trim()) {
+          showError("Please add your name so we know who this is from.");
           return;
         }
 
-        if (partYes.checked) {
-          var roleOk = form.querySelector('input[name="role_preference"]:checked');
-          if (!roleOk) {
-            showError("Please choose Lead or Co-lead.");
+        if (!wsStay.checked && !wsMove.checked) {
+          showError("Please choose whether you want to stay on your current workstream or move.");
+          return;
+        }
+
+        if (wsMove.checked) {
+          var anyWs = form.querySelectorAll('input[name="workstreams"]:checked');
+          if (anyWs.length === 0) {
+            showError("Please select at least one workstream, or choose Other and describe what you have in mind.");
             return;
           }
-          if (!document.getElementById("commit-fy").checked) {
-            showError(
-              'Please confirm your full fiscal year commitment, or choose "Not at this time" if you are not participating.'
-            );
-            return;
-          }
-          if (newToggle.checked && !newDesc.value.trim()) {
-            showError("Please describe your new initiative idea, or uncheck the new initiative option.");
+          if (wsOther.checked && !otherDetail.value.trim()) {
+            showError("You chose Other. Please add a quick note about what you are interested in.");
             return;
           }
         }
@@ -474,11 +435,11 @@
           })
           .finally(function () {
             submitBtn.disabled = false;
-            submitBtn.textContent = "Submit responses";
+            submitBtn.textContent = "Submit";
           });
       });
 
-      syncFollowUp();
+      syncWorkstreamSection();
     })();
   </script>
 </body>
